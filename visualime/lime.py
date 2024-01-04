@@ -38,8 +38,28 @@ def _watershed(image: np.ndarray, **kwargs):
     gradient = sobel(rgb2gray(image))
     return watershed(image=gradient, **kwargs)
 
+def pixelwise_segmentation(image: np.ndarray) -> np.ndarray:
+    """
+    Create pixel-wise segmentation for the image.
+    
+    Parameters
+    ----------
+    image : np.ndarray
+        The image to segment as a three-dimensional array of shape `(image_width, image_height, 3)`
+        where the last dimension are the RGB channels.
 
-SEGMENTATION_METHOD_TYPES = Literal["felzenszwalb", "slic", "quickshift", "watershed"]
+    Returns
+    -------
+    np.ndarray
+        An array of shape `(image_width, image_height)` where each pixel is a separate segment.
+    """
+    # Assuming the image is in RGB format, you can use the shape to create pixel-wise segments
+    height, width, _ = image.shape
+    segmented_image = np.arange(height * width).reshape((height, width))
+    
+    return segmented_image
+
+SEGMENTATION_METHOD_TYPES = Literal["felzenszwalb", "slic", "quickshift", "watershed", "pixelwise"]
 
 SEGMENTATION_METHODS: Dict[
     SEGMENTATION_METHOD_TYPES, Tuple[Callable, Dict[str, Any]]
@@ -57,6 +77,7 @@ SEGMENTATION_METHODS: Dict[
     ),
     "quickshift": (quickshift, {"kernel_size": 5, "max_dist": 6, "ratio": 0.7}),
     "watershed": (_watershed, {"markers": 250, "compactness": 0.001}),
+    "pixelwise": (pixelwise_segmentation)
 }
 
 

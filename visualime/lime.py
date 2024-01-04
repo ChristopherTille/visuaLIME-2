@@ -77,7 +77,7 @@ SEGMENTATION_METHODS: Dict[
     ),
     "quickshift": (quickshift, {"kernel_size": 5, "max_dist": 6, "ratio": 0.7}),
     "watershed": (_watershed, {"markers": 250, "compactness": 0.001}),
-    "pixelwise": (pixelwise_segmentation)
+    "pixelwise": (pixelwise_segmentation, {})
 }
 
 

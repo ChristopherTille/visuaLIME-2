@@ -26,7 +26,7 @@ def explain_classification(
     segmentation_settings: Optional[Dict[str, Any]] = None,
     num_of_samples: int = 64,
     p: float = 0.33,
-    segment_selection_method: str = "by_weight",
+    segment_selection_method: str = "forward_selection",
     num_segments_to_select: Optional[int] = 0,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """Explain why the classifier called through `predict_fn` classifies the `image` into

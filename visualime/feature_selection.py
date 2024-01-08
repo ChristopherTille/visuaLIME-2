@@ -39,7 +39,7 @@ def select_by_weight(
     if distances is None:
         distances = cosine_distance(samples)
     sample_weight = kernel(distances)
-
+    print(sample_weight)
     linear_model = instantiate_model(model_type=model_type, model_params=model_params)
 
     selector = SelectFromModel(
@@ -91,7 +91,7 @@ def forward_selection(
     if distances is None:
         distances = cosine_distance(samples)
     sample_weight = kernel(distances)
-
+    print(sample_weight)
     # TODO: Understand and account for the implications of regularization
     linear_model = instantiate_model(model_type=model_type, model_params=model_params)
 

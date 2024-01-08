@@ -171,7 +171,7 @@ def generate_samples(
     return np.random.binomial(n=1, p=p, size=(num_of_samples, num_of_segments))
 
 def generate_samples_ROLEX(
-    segment_mask: np.ndarray, image: np.ndarray, label_idx: int, num_of_samples: int = 64, 
+    segment_mask: np.ndarray, image: np.ndarray, label_idx: int, X_train, num_of_samples: int = 64,  
 ) -> np.ndarray:
     """Generate samples by randomly selecting a subset of the segments.
 

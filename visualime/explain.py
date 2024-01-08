@@ -98,7 +98,8 @@ def explain_classification(
     samples = generate_samples(
         segment_mask=segment_mask, num_of_samples=num_of_samples, p=p
     )
-
+    print(samples.shape)
+    print(samples)
     images = generate_images(image=image, segment_mask=segment_mask, samples=samples)
 
     predictions = predict_images(images=images, predict_fn=predict_fn)

@@ -20,6 +20,7 @@ from .visualize import generate_overlay, scale_opacity, select_segments
 
 def explain_classification(
     image: np.ndarray,
+    X_train: np.ndarray,
     predict_fn: Callable[[np.ndarray], np.ndarray],
     label_idx: Optional[int] = None,
     segmentation_method: SEGMENTATION_METHOD_TYPES = "slic",
@@ -28,7 +29,7 @@ def explain_classification(
     p: float = 0.33,
     segment_selection_method: str = "by_weight",
     num_segments_to_select: Optional[int] = 0,
-    X_train: np.ndarray,
+    
 ) -> Tuple[np.ndarray, np.ndarray]:
     """Explain why the classifier called through `predict_fn` classifies the `image` into
     a particular class using the LIME algorithm.

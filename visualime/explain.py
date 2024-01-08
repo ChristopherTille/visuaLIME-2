@@ -12,6 +12,7 @@ from .lime import (
     create_segments,
     generate_images,
     generate_samples,
+    generate_samples_ROLEX,
     predict_images,
     weigh_segments,
 )

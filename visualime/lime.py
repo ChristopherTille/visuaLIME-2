@@ -9,6 +9,7 @@ __all__ = [
     "create_segments",
     "generate_images",
     "generate_samples",
+    "generate_samples_ROLEX",
     "compute_distances",
     "predict_images",
     "weigh_segments",

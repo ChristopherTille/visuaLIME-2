@@ -39,6 +39,12 @@ def select_by_weight(
     if distances is None:
         distances = cosine_distance(samples)
     sample_weight = kernel(distances)
+    # Error: Sample weight have zero mean
+    print(sample_weight)
+    if np.sum(sample_weight) == 0:
+        # Assign a small non-zero value to avoid zero division
+        epsilon = 1e-8
+        sample_weight += epsilon
     print(sample_weight)
     linear_model = instantiate_model(model_type=model_type, model_params=model_params)
 
@@ -91,6 +97,11 @@ def forward_selection(
     if distances is None:
         distances = cosine_distance(samples)
     sample_weight = kernel(distances)
+    print(sample_weight)
+    if np.sum(sample_weight) == 0:
+        # Assign a small non-zero value to avoid zero division
+        epsilon = 1e-8
+        sample_weight += epsilon
     print(sample_weight)
     # TODO: Understand and account for the implications of regularization
     linear_model = instantiate_model(model_type=model_type, model_params=model_params)

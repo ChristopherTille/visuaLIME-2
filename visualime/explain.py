@@ -101,7 +101,7 @@ def explain_classification(
     )
     
     samples = generate_samples_ROLEX(
-        segment_mask=segment_mask, num_of_samples=num_of_samples, image=image, label_idx = label_idx, X
+        segment_mask=segment_mask, num_of_samples=num_of_samples, image=image, label_idx = label_idx, X_train = X_train
     )
     
     samples1 = generate_samples(

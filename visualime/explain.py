@@ -28,6 +28,7 @@ def explain_classification(
     p: float = 0.33,
     segment_selection_method: str = "by_weight",
     num_segments_to_select: Optional[int] = 0,
+    X_train: np.ndarray,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """Explain why the classifier called through `predict_fn` classifies the `image` into
     a particular class using the LIME algorithm.
@@ -72,6 +73,8 @@ def explain_classification(
         The number of segments to be considered when fitting the linear model to determine the `segment_weights`.
         If not given, half of the generated segments are selected.
 
+    X_train: np.ndarray
+        The training data, to extract the most similiar training image from. shape: (num_of_trainingimages, image_width, image_height, 3)
     Returns
     -------
     segment_mask : np.ndarray
@@ -94,8 +97,12 @@ def explain_classification(
         segmentation_method=segmentation_method,
         segmentation_settings=segmentation_settings,
     )
-
-    samples = generate_samples(
+    
+    samples = generate_samples_ROLEX(
+        segment_mask=segment_mask, num_of_samples=num_of_samples, image=image, label_idx
+    )
+    
+    samples1 = generate_samples(
         segment_mask=segment_mask, num_of_samples=num_of_samples, p=p
     )
     print(samples.shape)
